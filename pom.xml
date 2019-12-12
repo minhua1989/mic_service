@@ -9,6 +9,9 @@
 
 	<modules>
 		<module>mic_eureka</module>
+		<module>mic_gateway</module>
+		<module>mic_user</module>
+		<module>mic_commonapi</module>
 	</modules>
 
 	<parent>
@@ -19,6 +22,7 @@
 
 	<properties>
 		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+		<swagger.version>2.8.0</swagger.version>
 	</properties>
 
 	<dependencyManagement>

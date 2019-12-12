@@ -1,24 +1,26 @@
 spring:
   application:
-    name: mic_eureka
+    name: mic_gateway
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: mic_gateway
+      profile: dev
+      fail-fast: true
 server:
-  port: 8180
-  eureka_address: 127.0.0.1
+  port: 8181
+  eureka_address: 127.0.0.1:8180
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://${server.eureka_address}:${server.port}/eureka/
-    register-with-eureka: true
-    fetch-registry: false
+      defaultZone: http://${server.eureka_address}/eureka/
     registry-fetch-interval-seconds: 5
   instance:
     lease-expiration-duration-in-seconds: 15
     lease-renewal-interval-in-seconds: 5
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}
-  server:
-    enable-self-preservation: false
-    eviction-interval-timer-in-ms: 3000
 management:
   endpoints:
     web:
@@ -27,7 +29,3 @@ management:
   endpoint:
     health:
       show-details: always
-logging:
-  level:
-    root: info
-  file: logs/${spring.application.name}.log
