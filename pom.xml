@@ -11,7 +11,7 @@
 		<module>mic_eureka</module>
 		<module>mic_gateway</module>
 		<module>mic_user</module>
-		<module>mic_commonapi</module>
+		<module>commons</module>
 	</modules>
 
 	<parent>
@@ -23,6 +23,7 @@
 	<properties>
 		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 		<swagger.version>2.8.0</swagger.version>
+		<mybatis.version>1.3.2</mybatis.version>
 	</properties>
 
 	<dependencyManagement>

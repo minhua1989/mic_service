@@ -8,6 +8,73 @@ spring:
         serviceId: mic_user
       profile: dev
       fail-fast: true
+  # 开发数据库
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      first:  #初中综评93测试库
+        driverClassName: oracle.jdbc.OracleDriver
+        initial-size: 10
+        max-active: 100
+        min-idle: 20
+        max-wait: 10000
+        pool-prepared-statements: true
+        max-pool-prepared-statement-per-connection-size: 20
+        time-between-eviction-runs-millis: 30000
+        min-evictable-idle-time-millis: 1800000
+        validation-query: 'SELECT 1 FROM DUAL'
+        validation-query-timeout: 10
+        test-while-idle: true
+        test-on-borrow: false
+        test-on-return: false
+        use-unfair-lock: true
+        remove-abandoned: true
+        remove-abandoned-timeout: 1800
+        url: jdbc:oracle:thin:@101.226.173.159:1521:zxxsybtest
+        username: czzpuser
+        password: czzpuser_159_!QAZ
+      second:  #数据源2
+        driverClassName: oracle.jdbc.OracleDriver
+        initial-size: 10
+        max-active: 100
+        min-idle: 20
+        max-wait: 10000
+        pool-prepared-statements: true
+        max-pool-prepared-statement-per-connection-size: 20
+        time-between-eviction-runs-millis: 30000
+        min-evictable-idle-time-millis: 1800000
+        validation-query: 'SELECT 1 FROM DUAL'
+        validation-query-timeout: 10
+        test-while-idle: true
+        test-on-borrow: false
+        test-on-return: false
+        use-unfair-lock: true
+        remove-abandoned: true
+        remove-abandoned-timeout: 1800
+        url: jdbc:oracle:thin:@101.226.173.159:1521:zxxsybtest
+        username: czzpuser
+        password: czzpuser_159_!QAZ
+      third:  #数据源3
+        driverClassName: oracle.jdbc.OracleDriver
+        initial-size: 10
+        max-active: 100
+        min-idle: 20
+        max-wait: 10000
+        pool-prepared-statements: true
+        max-pool-prepared-statement-per-connection-size: 20
+        time-between-eviction-runs-millis: 30000
+        min-evictable-idle-time-millis: 1800000
+        validation-query: 'SELECT 1 FROM DUAL'
+        validation-query-timeout: 10
+        test-while-idle: true
+        test-on-borrow: false
+        test-on-return: false
+        use-unfair-lock: true
+        remove-abandoned: true
+        remove-abandoned-timeout: 1800
+        url: jdbc:oracle:thin:@101.226.173.159:1521:zxxsybtest
+        username: czzpuser
+        password: czzpuser_159_!QAZ
 server:
   port: 8181
   eureka_address: 127.0.0.1:8180
@@ -29,3 +96,8 @@ management:
   endpoint:
     health:
       show-details: always
+mybatis:
+  type-aliases-package: com.cloud.mic_commonapi.dao
+  mapper-locations: classpath*:mybatis-mappers/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true

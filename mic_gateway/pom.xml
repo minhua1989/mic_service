@@ -37,7 +37,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.cloud</groupId>
-			<artifactId>api-model</artifactId>
+			<artifactId>commons</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
