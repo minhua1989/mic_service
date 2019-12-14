@@ -3,6 +3,7 @@ package com.cloud.commons.utils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.commons.global.DataMap;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -14,6 +15,20 @@ import java.util.*;
  * 返回报文构建工具
  */
 public class ResponseUtils {
+
+    /**
+     * @param request Http请求对象
+     * @return 将Request中的parameter取出来封装成Map返回
+     */
+    public static Map<String, Object> createRequestParamsMapNew(HttpServletRequest request) {
+        Map<String, Object> rs = new DataMap<>();
+        Enumeration<String> elmts = request.getParameterNames();
+        while (elmts.hasMoreElements()) {
+            String nextStr = elmts.nextElement();
+            rs.put(nextStr.trim(), request.getParameter(nextStr));
+        }
+        return rs;
+    }
 
     private static JSONObject createResponseBody(boolean isSuccess, String message, Object... datas) {
         JSONObject result = new JSONObject();
