@@ -2,8 +2,6 @@ package com.cloud.commons.dao.bean;
 
 
 import com.cloud.commons.utils.BaseChecks;
-import com.cloud.commons.dao.pojo.LoginInfo;
-import com.cloud.commons.datasource.DataSourceTypes;
 import com.cloud.commons.exceptions.ParameterNumberError;
 import com.cloud.commons.exceptions.TableNameNullOrNotRightError;
 
@@ -20,7 +18,7 @@ public class DeleteParams implements IParams {
 
     private List<Parameter> params;
 
-    private static String db = DataSourceTypes.ORACLE;
+    private static String db = "oracle";
 
     private DeleteParams() {
     }
@@ -97,10 +95,10 @@ public class DeleteParams implements IParams {
 
     @Override
     public String getAlias() {
-        if(db.equals(DataSourceTypes.ORACLE)){
+        if(db.equals("oracle")){
             return "";
         }
-        if(db.equals(DataSourceTypes.MYSQL)){
+        if(db.equals("mysql")){
             return "m";
         }
         return "";

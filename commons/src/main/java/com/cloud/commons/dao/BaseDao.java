@@ -3,6 +3,7 @@ package com.cloud.commons.dao;
 import com.cloud.commons.dao.bean.IArguments;
 import com.cloud.commons.dao.bean.IParams;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.Map;
  * Created by The_Answer on 2016/6/10.
  * 标准DAO（通用）
  */
+@Repository
 public interface BaseDao {
 
     /**

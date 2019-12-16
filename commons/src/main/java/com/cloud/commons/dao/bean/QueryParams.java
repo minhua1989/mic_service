@@ -1,9 +1,9 @@
 package com.cloud.commons.dao.bean;
 
 
+import com.cloud.commons.datasource.DataSourceTypes;
 import com.cloud.commons.utils.BaseChecks;
 import com.cloud.commons.dao.pojo.LoginInfo;
-import com.cloud.commons.datasource.DataSourceTypes;
 import com.cloud.commons.exceptions.CanNotBeExecuteError;
 
 import java.util.ArrayList;
@@ -174,7 +174,7 @@ public class QueryParams implements IParams {
             }
             if (item.getKey().equalsIgnoreCase("database") && item.getValue() != null) {
                 dababase = item.getValue().toString();
-                this.hasPage = true;
+//                this.hasPage = true;
                 continue;
             }
             if (item.getValue() != null) this.addQueryParams(Parameter.createParameter(item.getKey(), item.getValue()));

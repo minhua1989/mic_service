@@ -2,12 +2,12 @@ package com.cloud.mic_user.service.testService;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cloud.commons.componet.BaseDaoComponent;
+import com.cloud.commons.datasource.DataSource;
+import com.cloud.commons.datasource.DataSourceType;
 import com.cloud.commons.utils.CollectionUtils;
 import com.cloud.commons.utils.ResponseUtils;
 import com.cloud.commons.dao.bean.*;
 import com.cloud.commons.dao.bean.UpdateParams;
-import com.cloud.commons.datasource.DataSourceNames;
-import com.cloud.commons.datasource.annotation.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    @DataSource(name = DataSourceNames.FIRST)
+    @DataSource(DataSourceType.db2)
     public JSONObject listUser(Map<String, Object> params) throws Exception{
 
         QueryParams listUser = QueryParams.createQueryParams("t_user");
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @DataSource(name = DataSourceNames.FIRST)
+    @DataSource(DataSourceType.db2)
     public JSONObject selectUserById(Map<String, Object> params) throws Exception {
 
         String userId = (String) params.get("id");
@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @DataSource(name = DataSourceNames.FIRST)
+    @DataSource(DataSourceType.db2)
     @Transactional(rollbackFor={Exception.class}) // 指定事物
     public JSONObject insertUser(Map<String, Object> params) throws Exception {
 
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @DataSource(name = DataSourceNames.FIRST)
+    @DataSource(DataSourceType.db2)
     public JSONObject updateUserById(Map<String, Object> params) throws Exception {
 
         String userId = (String) params.remove("id");
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @DataSource(name = DataSourceNames.FIRST)
+    @DataSource(DataSourceType.db2)
     public JSONObject deleteUserById(Map<String, Object> params) throws Exception {
 
         String userId = (String) params.remove("id");

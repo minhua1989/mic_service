@@ -16,6 +16,7 @@ eureka:
     serviceUrl:
       defaultZone: http://${server.eureka_address}/eureka/
     registry-fetch-interval-seconds: 5
+    register-with-eureka: true
   instance:
     lease-expiration-duration-in-seconds: 15
     lease-renewal-interval-in-seconds: 5
@@ -29,3 +30,17 @@ management:
   endpoint:
     health:
       show-details: always
+zuul:
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
