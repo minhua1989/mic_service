@@ -72,6 +72,32 @@ public class TestController {
         }
         return rs;
     }
+
+    @GetMapping(value = "/listSchool5")
+    public JSONObject listSchool5(HttpServletRequest request){
+
+        JSONObject rs = ResponseUtils.createErrorResponseBody();
+        Map<String, Object> params = ResponseUtils.createRequestParamsMapNew(request);
+        try{
+            rs = testService.listSchool5(params);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    @GetMapping(value = "/listSchool6")
+    public JSONObject listSchool6(HttpServletRequest request){
+
+        JSONObject rs = ResponseUtils.createErrorResponseBody();
+        Map<String, Object> params = ResponseUtils.createRequestParamsMapNew(request);
+        try{
+            rs = testService.listSchool6(params);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return rs;
+    }
     @GetMapping(value = "/listUser1")
     public JSONObject listUser1(HttpServletRequest request){
 

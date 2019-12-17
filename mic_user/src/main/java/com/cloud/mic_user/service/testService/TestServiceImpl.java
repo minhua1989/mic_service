@@ -10,12 +10,14 @@ import com.cloud.commons.utils.ResponseUtils;
 import com.cloud.commons.dao.bean.DeleteParams;
 import com.cloud.commons.dao.bean.Parameter;
 import com.cloud.commons.dao.bean.QueryParams;
+import com.cloud.commons.dao.mic_user.TestDao;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +31,8 @@ public class TestServiceImpl implements TestService {
     @Autowired
     private BaseDaoComponent baseDaoComponent;
 
+    @Autowired
+    private TestDao testDao;
 
     @Autowired
     private Environment env;
@@ -77,6 +81,23 @@ public class TestServiceImpl implements TestService {
 
     @Override
     @DataSource(DataSourceType.db2) // 指定数据源，不指定默认第一个数据源
+    public JSONObject listSchool5(Map<String, Object> params) throws Exception {
+
+        List<Map<String, Object>> schList = testDao.selectSchSql(params);
+
+        return ResponseUtils.createSuccessResponseBody("查询成功", schList);
+    }
+
+    @Override
+    public JSONObject listSchool6(Map<String, Object> params) throws Exception {
+
+        List<Map<String, Object>> schList = testDao.selectSchSql(params);
+
+        return ResponseUtils.createSuccessResponseBody("查询成功", schList);
+    }
+
+    @Override
+    @DataSource(DataSourceType.db2) // 指定数据源，不指定默认第一个数据源
     public JSONObject listSchool2(Map<String, Object> params) throws Exception {
 
         params.put("offset", "0");
@@ -86,7 +107,7 @@ public class TestServiceImpl implements TestService {
         QueryParams listSchool = QueryParams.createQueryParams("t_schoolinfo");
         listSchool.addQueryParamsByMap(params);
         listSchool.printSelf();
-         List<Map<String, Object>> schList = baseDaoComponent.selectDataByParams(listSchool);
+        List<Map<String, Object>> schList = baseDaoComponent.selectDataByParams(listSchool);
 
         return ResponseUtils.createSuccessResponseBody("查询成功", schList);
     }
@@ -96,7 +117,7 @@ public class TestServiceImpl implements TestService {
         // 通过id获取到drive-class、url、username、password
 
         JSONObject rs = ResponseUtils.createErrorResponseBody();
-        rs = listSchool2(params);
+        rs = listSchool1(params);
 
         // 配置数据源
 
@@ -117,7 +138,7 @@ public class TestServiceImpl implements TestService {
 
         // 获取用户信息
         JSONObject rs2 = ResponseUtils.createErrorResponseBody();
-        rs2 = listSchool2(params);
+        rs2 = listSchool1(params);
 
         // 更新id为1的用户信息
 
@@ -132,11 +153,14 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public JSONObject listSchool4(Map<String, Object> params ) throws Exception {
-        // 通过id获取到drive-class、url、username、password
+        //mysql
         DataSourceContextHolder.setDataSource("db2");
         JSONObject rs = ResponseUtils.createErrorResponseBody();
         rs = listSchool2(params);
         DataSourceContextHolder.clearDataSource();
+
+        //oracle
+        params=new HashMap<>();
         DataSourceContextHolder.setDataSource("db1");
         JSONObject rs3 = ResponseUtils.createErrorResponseBody();
         rs3 = listSchool1(params);
@@ -158,7 +182,8 @@ public class TestServiceImpl implements TestService {
         // 切换数据源
         DataSourceContextHolder.setDataSource("db3");
 
-        // 获取用户信息
+        // 获取
+        params=new HashMap<>();
         JSONObject rs2 = ResponseUtils.createErrorResponseBody();
         rs2 = listSchool1(params);
 

@@ -1,12 +1,15 @@
 package com.cloud.commons.datasource;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +34,7 @@ public class DruidConfiguration {
         //禁止访问的ip
         map.put(StatViewServlet.PARAM_NAME_DENY, "192.168.1.1");
         bean.setInitParameters(map);
+        bean.setUrlMappings(Arrays.asList("/druid/*"));
         return bean;
     }
 
