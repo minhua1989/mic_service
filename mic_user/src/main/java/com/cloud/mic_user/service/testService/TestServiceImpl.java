@@ -116,8 +116,8 @@ public class TestServiceImpl implements TestService {
     public JSONObject listSchool3(Map<String, Object> params ) throws Exception {
         // 通过id获取到drive-class、url、username、password
 
-        JSONObject rs = ResponseUtils.createErrorResponseBody();
-        rs = listSchool1(params);
+//        JSONObject rs = ResponseUtils.createErrorResponseBody();
+//        rs = listSchool1(params);
 
         // 配置数据源
 
@@ -126,6 +126,8 @@ public class TestServiceImpl implements TestService {
         dataSource.setJdbcUrl("jdbc:oracle:thin:@101.226.173.159:1521:zxxsybtest");
         dataSource.setUsername("xjxtuser");
         dataSource.setPassword("xjxtuser_159_!QAZ");
+        dataSource.setConnectionTestQuery("SELECT 1 FROM DUAL");
+
 
         // 添加一个数据源到多数据源中
         DynamicDataSource dynamicDataSource = DynamicDataSource.getInstance();
